@@ -36,6 +36,7 @@ const Modal = ({ docs, selectedImg, setSelectedImg }) => {
       animate={{ opacity: 1 }}
     >
       <img
+        className="mySlides"
         src={selectedImg}
         alt="enlarged pic"
         initial={{ y: "100vh" }}
