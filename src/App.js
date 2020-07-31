@@ -3,15 +3,22 @@ import Title from "./comps/Title";
 import UploadForm from "./comps/UploadForm";
 import ImageGrid from "./comps/ImageGrid";
 import Modal from "./comps/Modal";
-
+import useFirestore from "./hooks/useFirestore";
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
+  const { docs } = useFirestore("images");
   return (
     <div className="App">
       <Title />
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
-      {selectedImg && <Modal selectedImg={selectedImg}setSelectedImg={setSelectedImg} />}
+      {selectedImg && (
+        <Modal
+          selectedImg={selectedImg}
+          setSelectedImg={setSelectedImg}
+          docs={docs}
+        />
+      )}
     </div>
   );
 }
