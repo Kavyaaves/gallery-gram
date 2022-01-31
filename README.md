@@ -6,7 +6,7 @@ A personalized gallery for saving photos and reminiscing memories.
 
 React\
 Firebase\
-Framer Motion\
+Framer Motion
 
 ## Site URL
 
