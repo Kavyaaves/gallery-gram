@@ -1,13 +1,12 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import "./Modal.css";
 
-const Modal = ({ docs, selectedImg, setSelectedImg }) => {
+const Modal = ({ docs, selectedImg, setSelectedImg, modalOpen, modalClose }) => {
   function getIndex(selectedImg) {
     return docs.findIndex((img) => img.url === selectedImg);
   }
   var slideIndex = getIndex(selectedImg);
-  console.log(slideIndex);
   const handleClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
       setSelectedImg(null);
@@ -28,6 +27,27 @@ const Modal = ({ docs, selectedImg, setSelectedImg }) => {
       setSelectedImg(null);
     }
   };
+  const dropIn = {
+    hidden: {
+      y: "-100vh",
+      opacity: 0,
+    },
+    visible: {
+      y: "0",
+      opacity: 1,
+      transition: {
+        duration: 0.1,
+        type: "spring",
+        damping: 25,
+        stiffness: 500,
+      },
+    },
+    exit: {
+      y: "100vh",
+      opacity: 0,
+    },
+  };
+
   return (
     <motion.div
       className="backdrop"
@@ -43,17 +63,15 @@ const Modal = ({ docs, selectedImg, setSelectedImg }) => {
         animate={{ y: "100vh" }}
       />
       <a
-        className={`${slideIndex - 1 ? "block" : "none"} ${
-          slideIndex === 0 ? "" : "prev"
-        }`}
+        className={`${slideIndex - 1 ? "block" : "none"} ${slideIndex === 0 ? "" : "prev"
+          }`}
         onClick={handlePrev}
       >
         &#10094;
       </a>
       <a
-        className={`${slideIndex + 1 ? "block" : "none"} ${
-          slideIndex === docs.length - 1 ? "" : "next"
-        }`}
+        className={`${slideIndex + 1 ? "block" : "none"} ${slideIndex === docs.length - 1 ? "" : "next"
+          }`}
         onClick={handleNext}
       >
         &#10095;
