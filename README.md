@@ -10,6 +10,8 @@ Framer Motion\
 
 ## Site URL
 
+https://kavyaaves.github.io/gallery-gram/
+
 ## To start with
 
 Clone the project, get into the project directory and run the following commands:
